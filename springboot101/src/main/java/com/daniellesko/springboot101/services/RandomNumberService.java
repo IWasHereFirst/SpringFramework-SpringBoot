@@ -8,10 +8,8 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Random;
 
 @Service
-// WebApplicationContext.SCOPE_SESSION - vytvori serverside session vytvorenim cookie, ktora existuje po dobu 25min.
-// Je mozne session nakonfigurovat v application.properties. Reprezentuje Statefull data na servery (zle pre skalovatelnost aplikacie)
-// Proxy vytvori instanciu pre kazdy session.
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.INTERFACES)
+// WebApplicationContext.SCOPE_SESSION - funguje ako singleton, nie teda potrebne pridavat proxy
+@Scope(value = WebApplicationContext.SCOPE_APPLICATION)
 public class RandomNumberService implements MyService {
     private final int value;
 
